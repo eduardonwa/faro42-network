@@ -11,11 +11,9 @@
             
             <x-banner-button :user="$user"></x-banner-button>
 
-            <button type="submit">submit</button>
-
             </form>
             <img 
-                src="{{ $user->banner }}" 
+                src="{{ ((Auth::user()->banner) && (Storage::disk('public')->exists('img/'.Auth::user()->banner))) ? (Storage::url('img/'.Auth::user()->banner)) : '/img/default-banner-profile.png' }}"
                 alt="Banner"
                 class="mb-2"
                 id="user-banner"
