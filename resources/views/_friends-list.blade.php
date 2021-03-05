@@ -16,6 +16,6 @@
         </div>
     </li>
     @empty
-        <li>Aún no sigues a nadie</li>
+        <li>No estás siguendo a nadie</li>
     @endforelse
 </ul>

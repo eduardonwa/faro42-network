@@ -3,9 +3,10 @@
         <img    
                 src="{{ $user->avatar }}" 
                 alt="Your current avatar"
+                id="previewAvatar"
                 class="w-auto h-44 relative bg-gray-100 rounded-full"
         >
-        <label class="cursor-pointer rounded-full w-36 h-44 flex flex-col absolute items-center md:bg-opacity-50">
+        <label for="avatar" class="cursor-pointer rounded-full w-36 h-44 flex flex-col absolute items-center md:bg-opacity-50">
             <svg class="w-6 h-full pt-36" viewBox="0 0 20 20">
                 <g id="Page-1" stroke="none" stroke-width="1" fill="white" fill-rule="evenodd">
                     <g>
@@ -24,39 +25,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
     </div>
+    
+    <x-name-username :user="$user"> </x-name-username>
 
-    <div class="md:col-span-2">
-        <label  class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                for="name"
-        >   Nombre
-        </label>
-
-        <input  class="mb-4 border border-gray-400 p-2 w-full"
-                type="text"
-                name="name"
-                id="name"
-                value="{{ $user->name }}"
-                required
-        >
-        @error('name')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
-
-        <label  class="block mb-2 uppercase font-bold text-xs text-gray-700" 
-                for="username"
-        >
-            Nombre de usuario
-        </label>
-
-        <input  class="border border-gray-400 p-2 w-full"
-                type="text"
-                name="username"
-                id="username"
-                value="{{ $user->username }}"
-                required
-        >
-        @error('username')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
-    </div>
 </div>

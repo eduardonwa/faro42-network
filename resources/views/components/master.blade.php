@@ -15,6 +15,7 @@
     <body>
 
         <div id="app">
+
             <section class="px-8 py-3 mb-4">
                 <header class="container mx-auto">
                     <h1>
@@ -29,6 +30,7 @@
                 </header>
             </section>
             {{ $slot }}
+
         </div>
         
     </body>

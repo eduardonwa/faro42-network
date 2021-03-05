@@ -1,6 +1,6 @@
 @if (current_user()->is($user))
 <div class="flex items-center justify-center absolute top-1 right-1 p-2 rounded-md cursor-pointer w-20">
-    <label class="bg-white cursor-pointer rounded-full w-full flex flex-col items-center hover:bg-blue-600 bg-gray-600 bg-opacity-25">
+    <label class="bg-white cursor-pointer rounded-full w-full flex flex-col items-center hover:bg-blue-600 bg-gray-600 bg-opacity-25 transition ease-in-out">
         <svg class="w-6 h-8" viewBox="0 0 20 20">
             <g id="Page-1" stroke="none" stroke-width="1" fill="white" fill-rule="evenodd">
                 <g id="icon-shape">

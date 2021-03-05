@@ -3,7 +3,7 @@
         @csrf
         @method('PATCH')
 
-        <x-avatar-with-user-info :user="$user"></x-avatar-with-user-info>
+        <x-avatar-upload :user="$user"></x-avatar-upload>
 
         <x-banner-image :user="$user"></x-banner-image>
 

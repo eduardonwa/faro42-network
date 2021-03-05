@@ -1,4 +1,4 @@
-<div class="border border-gray-300 rounded-lg py-4 px-6">
+<div class="mb-8 border border-gray-300 rounded-lg py-4 px-6">
     @forelse ($tweets as $tweet)
         @include('_tweet')
         @empty

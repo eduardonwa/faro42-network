@@ -12,7 +12,7 @@
                 </div>
     
                 @if ( auth()->check() )
-                    <div class="lg:w-1/6 h-full bg-blue-100 rounded-lg p-4 bg-gray-200 rounded-lg py-4 px-6 border border-gray-300">
+                    <div class="mb-6 md:mb-0 lg:w-1/6 h-full bg-blue-100 rounded-lg p-4 bg-gray-200 rounded-lg py-4 px-6 border border-gray-300">
                         @include('_friends-list')
                     </div>
                 @endif

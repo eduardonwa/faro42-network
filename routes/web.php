@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\TweetLikesController;
+use App\Http\Controllers\ProjectsController;
 use App\Models\Tweet;
 
 /*
