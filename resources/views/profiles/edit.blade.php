@@ -3,10 +3,61 @@
         @csrf
         @method('PATCH')
 
-        <x-avatar-upload :user="$user"></x-avatar-upload>
+        <div class="flex flex-col md:grid md:grid-cols-3 md:gap-4 mb-6">
+            <div class="relative flex flex-col items-center mt-8 mb-4 md:mt-0 md:mb-0">
+                <img    
+                    src="{{ $user->avatar }}" 
+                    alt="Your current avatar"
+                    id="avatarPreview"
+                    class="w-auto h-44 relative rounded-full"
+                >
+                <label 
+                    class="cursor-pointer bg-blue-600 p-2 text-sm rounded-md hover:bg-blue-500 text-white"
+                    for="avatar"
+                >
+                    <input
+                        class="hidden"
+                        type="file"
+                        name="avatar"
+                        id="avatar"
+                        onchange="previewFile()"
+                    > Cambiar avatar
+                </label>
+                @error('avatar')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            <x-name-username :user="$user"> </x-name-username>
+        </div>
 
-        <x-banner-image :user="$user"></x-banner-image>
+        <div class="mt-8 mb-6 flex flex-col items-center relative">
+            <label  class="mb-4 text-start w-full block uppercase font-bold text-xs text-gray-700" 
+            > 
+            Portada
+            </label>
+            <img    
+                src="{{ $user->banner }}"
+                alt="Tu portada actual"
+                id="dvPreview2"
+                class="w-full h-44 mb-2 border border-gray-300 rounded-sm"
+            >
+            <div class="relative w-full h-10 flex items-center justify-center md:items-end md:justify-end">
+                <label 
+                    class="absolute w-46 p-2 bg-blue-600 hover:bg-blue-500 text-sm rounded-md text-white cursor-pointer"
+                    for="banner">
+                        <input  
+                            class="fileupload hidden"
+                            type="file"
+                            name="banner"
+                            id="banner"
+                            width="40"
+                            onchange="previewFile()"
+                        >   Cambiar imagen de portada
+                </label>
+            </div>
+         </div>
 
+        
         <div class="mb-6">
             <label  class="block mb-2 uppercase font-bold text-xs text-gray-700" 
                     for="email"
@@ -74,3 +125,20 @@
 
     </form>
 </x-app>
+
+<script>
+function previewFile() {
+  const preview = document.getElementById('avatarPreview');
+  const file = document.querySelector('input[type=file]').files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    // convert image file to base64 string
+    preview.src = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+</script>

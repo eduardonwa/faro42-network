@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Followable;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -52,7 +53,7 @@ class User extends Authenticatable
 
     public function getBannerAttribute($value)
     {
-        return asset($value ?: '/img/banner.png');
+        return asset($value ?: '/img/banner.svg');
     }
 
     public function timeline()
@@ -81,5 +82,20 @@ class User extends Authenticatable
         $path = route('profile', $this->username);
 
         return $append ? "{$path}/{$append}" : $path;
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimeStamps();
+    }
+
+    public function assignRole($role)
+    {
+        $this->roles()->save($role);
+    }
+
+    public function abilities()
+    {
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
     }
 }

@@ -82,7 +82,7 @@ module.exports = {
       'gradient-to-bl': 'linear-gradient(to bottom left, var(--tw-gradient-stops))',
       'gradient-to-l': 'linear-gradient(to left, var(--tw-gradient-stops))',
       'gradient-to-tl': 'linear-gradient(to top left, var(--tw-gradient-stops))',
-      'faro': "url('/img/faro42-desktop-bg.svg')",
+      'faro': "url('img/faro42-desktop-bg.svg')",
     },
     backgroundOpacity: (theme) => theme('opacity'),
     backgroundPosition: {
@@ -481,6 +481,7 @@ module.exports = {
       right: 'right',
       'right-bottom': 'right bottom',
       'right-top': 'right top',
+      'right-custom': '200px',
       top: 'top',
     },
     opacity: {
@@ -853,5 +854,7 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

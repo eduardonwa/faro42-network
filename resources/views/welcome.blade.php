@@ -10,16 +10,16 @@
         img:not(.png) {
             width: 100%;
         }
-        .faro-bg {
+        /*.faro-bg {
             background-image:url({{url('img/faro42-desktop-bg.svg')}});
-        }
+        } */
     </style>
-    <body class="antialiased">
+    <body>
 
-        <div class="h-screen faro-bg bg-no-repeat bg-left-bottom flex flex-col">
-            <div class="bg-gray-800 flex items-center justify-center lg:hidden">
+        <div class="h-screen bg-gray-200 faro-bg bg-no-repeat bg-left-bottom flex flex-col">
+            <div class="bg-gray-800 flex items-center justify-center md:bg-transparent">
                     <svg 
-                            class="w-60 p-8"
+                            class="w-60 p-8 lg:hidden relative md:top-20 top-0"
                             version="1.1"
                             xmlns="http://www.w3.org/2000/svg" 
                             viewBox="0 0 200 294.9"
@@ -32,6 +32,14 @@
                         .st4{fill:#FFFFFF;}
                         .st5{clip-path:url(#SVGID_8_);fill:#EFEEEE;}
                         .st6{clip-path:url(#SVGID_10_);fill:#66B3E5;}
+                        svg * {
+                            transition: fill .1s ease-out, opacity .1s ease-out;
+                        }
+                        @media all and (min-width: 768px) {
+                            .st4 {
+                              fill: #000000;
+                            }
+                        }
                     </style>
                     <defs>
                     </defs>
@@ -94,17 +102,25 @@
                     </svg>
             </div>
             
-            <div class="w-full h-full relative lg:bg-transparent bg-gray-200 lg:flex lg:flex-col lg:items-end lg:justify-center">
+            <div class="bg-gray-200 lg:bg-transparent flex items-center justify-center flex-col h-full">
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home Feed</a>
                     @else
-                        <p class="font-semibold text-center text-lg md:text-2xl lg:w-5/12 m-8">
-                            Entérate de lo que pasa en el área Sonora Sur de Alcohólicos Anónimos
-                        </p>
-                        <div class="flex items-center flex-col">
-                            <a href="{{ route('login') }}" class="lg:mr-52 flex items-center justify-center text-lg font-bold text-gray-100 mb-8 h-14 w-52 rounded-lg bg-blue-600">Ingresar</a>
-                            <a href="{{ route('register') }}" class="lg:mr-52 flex items-center justify-center text-lg font-bold text-gray-100 h-14 w-52 rounded-lg bg-blue-600">Crea una cuenta</a>
+                    <div class="w-full lg:grid lg:grid-cols-2">
+                        <div class="hidden lg:block lg:flex lg:items-center lg:justify-center">
+                            <img 
+                                    src="img/faro42-desktop-bg2.svg" 
+                                    class="h-96"
+                                    alt="">
                         </div>
+                        <div class="flex items-center flex-col pb-8">
+                        <p class="font-semibold text-center text-lg md:text-2xl m-8 mb-8">
+                            Lo que está pasando en el área Sonora Sur de Alcohólicos Anónimos
+                        </p>
+                            <a href="{{ route('login') }}" class="transition duration-150 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110 rounded-lg flex items-center justify-center text-lg font-bold text-gray-100 mb-8 h-14 w-52">Ingresar</a>
+                            <a href="{{ route('register') }}" class="transition duration-150 ease-in-out border-2 border-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110 hover:text-white rounded-lg flex items-center justify-center text-lg font-bold text-black h-14 w-52">Crea una cuenta</a>
+                        </div>
+                    </div>
                     @endauth
             </div>
         </div>

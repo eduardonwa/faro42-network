@@ -8,7 +8,9 @@ use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\TweetLikesController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\FaroController;
 use App\Models\Tweet;
+use App\Models\Faro;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,11 @@ use App\Models\Tweet;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// make this route group accessible only to the moderator/owner
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/faro', FaroController::class);
 });
 
 Route::middleware(['auth'])->group(function () {

@@ -1,21 +1,14 @@
 <x-app>
     <header class="mb-6 relative">
         <div class="relative">
-            <form   method="POST" 
-                    action="{{ $user->path() }}"
-                    enctype="multipart/form-data"
-            >
-            @csrf
-            @method('PATCH')
-            
-            <x-banner-button :user="$user"></x-banner-button>
 
-            </form>
             <img 
                 src="{{ $user->banner }}"
                 alt="Banner"
-                class="mt-8 mb-2 h-48 w-full"
+                id="previewBanner"
+                class="mt-4 mb-8 rounded-md"
             >
+
             <img 
                 src="{{ $user->avatar }}"
                 alt="Avatar"
@@ -51,6 +44,8 @@
         </p>
     
     </header>
+
+    @include('_publish-tweet-panel')
 
     @include('_timeline', [
         'tweets' => $tweets

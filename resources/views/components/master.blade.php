@@ -18,15 +18,13 @@
 
             <section class="px-8 py-3 mb-4">
                 <header class="container mx-auto">
-                    <h1>
-                        <a href=" {{route ('home') }} ">
-                            <img
-                                src="/img/faro42.svg" 
-                                alt="Faro42 logo"
-                                class="w-32 h-28"
-                            >
-                        </a>
-                    </h1>
+                    <a href=" {{route ('home') }} ">
+                        <img
+                            src="/img/faro42.svg" 
+                            alt="Faro42 logo"
+                            class="w-32 h-28"
+                        >
+                    </a>
                 </header>
             </section>
             {{ $slot }}
