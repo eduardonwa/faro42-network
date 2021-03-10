@@ -1,6 +1,6 @@
 # Boletín Faro 42 Social Network
 
-This project is created for a small community of A.A. in Cd.Obregón, Sonora México with the latest activities that happen around the community. Service, special meetings, and every activity regarding, mostly, the service of A.A.
+This project is created for a community of A.A. in Cd.Obregón, Sonora México with the latest activities that happen around the community. Service, special meetings, and every activity regarding, mostly, the service of A.A.
 
 
 # What Is A.A.?
