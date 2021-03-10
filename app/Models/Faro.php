@@ -17,4 +17,11 @@ class Faro extends Model
     {
         return 'post';
     }
+
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::where('id', 'like', '%'.$search.'%')
+            ->orWhere('title', 'like', '%'.$search.'%');
+    }
 }

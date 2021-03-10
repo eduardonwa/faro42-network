@@ -11,6 +11,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\FaroController;
 use App\Models\Tweet;
 use App\Models\Faro;
+use App\Http\Livewire\FaroPostsTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// make this route group accessible only to the moderator/owner
-Route::middleware(['auth'])->group(function () {
+Route::get('/modal', function () {
+    return view('test-modal');
+});
+
+
+Route::middleware(['auth', 'can:create_posts' ])->group(function () {
     Route::resource('/faro', FaroController::class);
+    Route::get('/faro', FaroPostsTable::class); //livewire class
 });
 
 Route::middleware(['auth'])->group(function () {

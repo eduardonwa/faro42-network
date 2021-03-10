@@ -10,9 +10,6 @@
         img:not(.png) {
             width: 100%;
         }
-        /*.faro-bg {
-            background-image:url({{url('img/faro42-desktop-bg.svg')}});
-        } */
     </style>
     <body>
 
@@ -123,6 +120,7 @@
                     </div>
                     @endauth
             </div>
+            
         </div>
 
     </body>

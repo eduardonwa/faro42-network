@@ -23,9 +23,10 @@ class FaroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Faro $post)
     {   
-        return view('faro.create');
+        $post = new Faro();
+        return view('faro.create', compact('post'));
     }
 
     /**
@@ -99,14 +100,4 @@ class FaroController extends Controller
         return redirect('/faro');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
