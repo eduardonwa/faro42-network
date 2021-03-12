@@ -4,7 +4,7 @@
 
         <textarea 
             name="body"
-            class="w-full"
+            class="w-full rounded-md"
             placeholder="Hola, {{auth()->user()->name}}"
             required
             autofocus

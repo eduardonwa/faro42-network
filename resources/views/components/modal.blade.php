@@ -2,8 +2,6 @@
 
 <title> Modal </title>
 
-
-
 <body>
     {{ $slot }}
 </body>

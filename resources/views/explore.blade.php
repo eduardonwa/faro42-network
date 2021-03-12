@@ -1,4 +1,11 @@
 <x-app>
+
+    @include('_entries', [
+        'posts' => App\Models\Faro::all()
+    ])
+
+    <h1 class="font-bold mb-10">Compañeros servidores</h1>
+
     <div>
         @foreach ($users as $user)
             <a href="{{ $user->path() }}" class="flex items-center mb-5">

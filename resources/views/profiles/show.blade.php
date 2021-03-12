@@ -45,7 +45,9 @@
     
     </header>
 
-    @include('_publish-tweet-panel')
+    @if(current_user()->is($user))
+        @include('_publish-tweet-panel')
+    @endif
 
     @include('_timeline', [
         'tweets' => $tweets

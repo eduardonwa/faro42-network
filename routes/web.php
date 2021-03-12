@@ -1,17 +1,17 @@
 <?php
 
+use App\Models\Faro;
+use App\Models\Tweet;
+use App\Http\Livewire\FaroPostsTable;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetsController;
-use App\Http\Controllers\ProfilesController;
-use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
-use App\Http\Controllers\TweetLikesController;
+use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\ProjectsController;
-use App\Http\Controllers\FaroController;
-use App\Models\Tweet;
-use App\Models\Faro;
-use App\Http\Livewire\FaroPostsTable;
+use App\Http\Controllers\TweetLikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +28,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/modal', function () {
-    return view('test-modal');
+Route::get('/boletin/{id}', function () {
+    return view('faro.show', [
+        'posts' => App\Models\Faro::get()
+    ]);
 });
 
-
-Route::middleware(['auth', 'can:create_posts' ])->group(function () {
-    Route::resource('/faro', FaroController::class);
+Route::middleware(['auth', 'can:create_posts'])->group(function () {
+    Route::resource('/faro', FaroController::class)->except('show');
     Route::get('/faro', FaroPostsTable::class); //livewire class
 });
 

@@ -58,11 +58,50 @@
                     </td>
 
                     <td class="border px-4 py-2">
-                        <a href="#" class="hover:font-semibold hover:underline hover:text-green-500 cursor-pointer">
-                            {{ $post->title }}
+                        <div class="flex items-start">
+                            <form method="POST" action="faro/{{$post->id}}">
+                                @csrf
+                                @method('DELETE')
+                                    <button 
+                                        class="danger-btn" 
+                                        type="submit" 
+                                        onclick="return confirm('¿Estas seguro de borrar el recurso?')"> 
+                                            <svg
+                                                class="w-4 cursor-pointer mr-4"
+                                                viewBox="0 0 20 20" 
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <g id="Page-1" stroke="none" stroke-width="1" fill="black" fill-rule="evenodd">
+                                                    <g id="icon-shape">
+                                                        <path d="M2,2 L18,2 L18,4 L2,4 L2,2 Z M8,0 L12,0 L14,2 L6,2 L8,0 Z M3,6 L17,6 L16,20 L4,20 L3,6 Z M8,8 L9,8 L9,18 L8,18 L8,8 Z M11,8 L12,8 L12,18 L11,18 L11,8 Z" id="Combined-Shape"></path>
+                        
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                    </button>
+                            </form>
+                            <a href="faro/{{ $post->id }}/edit">
+                                <svg 
+                                    class="w-4 cursor-pointer mr-4"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill="black" fill-rule="evenodd">
+                                        <g id="icon-shape">
+                                            <path d="M12.2928932,3.70710678 L0,16 L0,20 L4,20 L16.2928932,7.70710678 L12.2928932,3.70710678 Z M13.7071068,2.29289322 L16,0 L20,4 L17.7071068,6.29289322 L13.7071068,2.29289322 Z" id="Combined-Shape"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </a>
+                            <div class="flex items-center justify-center">
+                                <a href="#" class="hover:font-semibold hover:underline hover:text-green-500 cursor-pointer text-sm">
+                                    {{ $post->title }}
+                                </a>
+                            </div>
+                        </div>
                     </td>
 
-                    <td class="border px-4 py-2">
+                    <td class="border px-4 py-2 text-sm">
                         {{ substr(strip_tags($post->body), 0, 100) }} {{ strlen(strip_tags($post->body)) > 75 ? "..." : "" }}
                     </td>
 
@@ -83,7 +122,7 @@
                         </x-faro-posts-img-modal>
                     </x-modal>
 
-                    <td class="border px-4 py-2">
+                    <td class="border px-4 py-2 text-sm">
                         {{ $post->created_at->diffForHumans() }}
                     </td>
                 </tr>
@@ -92,7 +131,7 @@
     </table>
     {!! $posts->links() !!}
     @else
-        <p class="text-center flex items-center justify-center">Ooops! No existen publicaciones, <a href="/faro/create" class="text-purple-500 hover:underline pl-1"> haz una publicación</a><span style='font-size:25px; padding-left: 5px;'>&#9749;</span></p>
+        <p class="text-center flex items-center justify-center">Oops! No existen publicaciones, <a href="/faro/create" class="text-purple-500 hover:underline pl-1"> haz una publicación</a><span style='font-size:25px; padding-left: 5px;'>&#9749;</span></p>
     @endif
 </div>
 

@@ -32,11 +32,11 @@
                 <a href="#" class="absolute right-16 top-10 h-8 w-8 text-xl text-center flex items-center justify-center border-2 cursor-pointer hover:bg-gray-200 transition ease-in-out">
                     &times;
                 </a>
-                <img 
-                    src="{{ $slot }}"
-                    alt=""
-                    class="p-4"
-                >
+                <img
+                src="{{ $slot }}"
+                alt=""
+                class="p-4"
+            >
             </main>
 
             <aside class="m-2">

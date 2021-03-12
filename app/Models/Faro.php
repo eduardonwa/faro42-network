@@ -24,4 +24,9 @@ class Faro extends Model
             : static::where('id', 'like', '%'.$search.'%')
             ->orWhere('title', 'like', '%'.$search.'%');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

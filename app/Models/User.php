@@ -102,4 +102,9 @@ class User extends Authenticatable
     {
         return $this->roles->map->abilities->flatten()->pluck('name')->unique();
     }
+
+    public function faro()
+    {
+        return $this->hasOne(Faro::class);
+    }
 }

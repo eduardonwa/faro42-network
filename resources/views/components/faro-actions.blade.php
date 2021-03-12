@@ -1,8 +1,8 @@
 @props([
     'type' => 'index',
     'colors' => [
-        'index' => 'bg-yellow-500 hover:bg-yellow-700',
-        'create' => 'bg-green-500 hover:bg-green-700',
+        'index' => 'bg-gray-500 hover:bg-yellow-500',
+        'create' => 'bg-gray-500 hover:bg-green-500',
     ],
     'redirect' => 'index',
     'link' => [

@@ -13,7 +13,7 @@
             class="font-bold text-lg mb-4 block"
             href="/explore"
         >
-            Explorar
+            Servicios
         </a>
     </li>
 
@@ -47,7 +47,7 @@
     <li>
         <form method="POST" action="/logout">
             @csrf
-            <button class="font-bold text-lg">Cerrar sesión</button>
+            <button class="font-bold text-lg mb-4 text-left">Cerrar sesión</button>
         </form>
     </li>
 </ul>

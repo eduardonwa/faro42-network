@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Faro;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class FaroController extends Controller
 {
@@ -13,7 +16,7 @@ class FaroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Faro $post)
-    {   
+    {
         $posts = Faro::get();
         return view('faro.index', compact('posts'));
     }
@@ -24,7 +27,7 @@ class FaroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Faro $post)
-    {   
+    {
         $post = new Faro();
         return view('faro.create', compact('post'));
     }
@@ -35,23 +38,23 @@ class FaroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
-        $post = request()->validate([
-            'title' => ['required', 'max:255'],
-            'body' => ['required'],
-            'image_url' => ['file']
-        ]);
-
-        if(request('image')) {
-            $post['image_url'] = request('image')->store('faro_posts_img');
-        }
-
-        $postObject = new Faro($post);
-        $postObject->save();
-
-        return redirect('/faro');
-    }
+     public function store(Request $request)
+     {   
+         $post = request()->validate([
+             'title' => ['required', 'max:255'],
+             'body' => ['required'],
+             'image_url' => ['image']
+         ]);
+ 
+         if(request('image')) {
+             $post['image_url'] = request('image')->store('faro_posts_img');
+         }
+ 
+         $postObject = new Faro($post);
+         $postObject->save();
+ 
+         return redirect('/faro');
+     }
 
     /**
      * Display the specified resource.
@@ -59,9 +62,9 @@ class FaroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show()
+    {   
+        return view('faro.show');
     }
 
     /**
@@ -83,21 +86,47 @@ class FaroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     
     public function update(Request $request, $id)
     {
-        $post = request()->validate([
+        $post = Faro::findOrFail($id);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        $this->validate($request, [
             'title' => ['required', 'max:255'],
             'body' => ['required'],
-            'image_url' => ['file']
+            'image_url' => ['image']
         ]);
 
+        $oldImage = 'storage/' . $post->image_url;
+        
         if(request('image')) {
+            if (file_exists($oldImage)) {
+                File::delete($oldImage);
+            }
+            
             $post['image_url'] = request('image')->store('faro_posts_img');
         }
 
         $post->update();
-
+        
         return redirect('/faro');
     }
 
+    public function destroy(Faro $post, $id)
+    {   
+        $post = Faro::find($id);
+
+        $oldImage = 'storage/' . $post->image_url;
+
+        if (file_exists($oldImage)) {
+            File::delete($oldImage);
+        }
+
+        $post->delete();
+
+        return redirect('/faro');
+    }
 }
