@@ -13,10 +13,10 @@
     </style>
     <body>
 
-        <div class="h-screen bg-gray-200 faro-bg bg-no-repeat bg-left-bottom flex flex-col">
+        <div class="h-screen bg-gray-100 bg-no-repeat bg-left-bottom flex flex-col">
             <div class="bg-gray-800 flex items-center justify-center md:bg-transparent">
                     <svg 
-                            class="w-60 p-8 lg:hidden relative md:top-20 top-0"
+                            class="w-60 p-8 lg:hidden relative top-0"
                             version="1.1"
                             xmlns="http://www.w3.org/2000/svg" 
                             viewBox="0 0 200 294.9"
@@ -99,7 +99,7 @@
                     </svg>
             </div>
             
-            <div class="bg-gray-200 lg:bg-transparent flex items-center justify-center flex-col h-full">
+            <div class="bg-gray-100 lg:bg-transparent flex items-center justify-center flex-col h-full">
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home Feed</a>
                     @else

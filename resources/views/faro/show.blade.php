@@ -1,16 +1,14 @@
 <x-app>
-    <h1 class="flex font-bold text-green-900 text-2xl">Boletín Express</h1>
-
     <div>
-        <a href="#" class="text-sm">
+        <a href="#" class="flex font-bold text-green-900 text-2xl">
             Descarga el boletín aqui
         </a>
 
         @foreach ($posts as $post)    
             <div class="mt-4">
-                <p>{{$post->title}}</p>
-                <p>{{$post->body}}</p>
-                <img src="{{ asset($post->image_url) }}" />
+                <img class="mb-4 border-2" src="{{ asset($post->image_url) }}" />
+                <h1 class="font-bold text-lg mb-4">{{$post->title}}</h1>
+                <p class="mb-4">{{$post->body}}</p>
             </div>
         @endforeach
     </div>

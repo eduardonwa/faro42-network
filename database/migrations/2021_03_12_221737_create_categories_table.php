@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFaroPostsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateFaroPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('faro_posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('body');
-            $table->text('image_url')->nullable();
-            $table->boolean('is_approved')->default(false);
-            $table->unsignedBigInteger('category_id');
+            $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateFaroPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faro_posts');
+        Schema::dropIfExists('categories');
     }
 }

@@ -14,6 +14,7 @@
     </form>
 
     @include('faro.form', [
-        'posts' => App\Models\Faro::get()
+        'posts' => App\Models\Faro::get(),
+        'categories' => App\Models\Category::get()
     ])
 </x-master>

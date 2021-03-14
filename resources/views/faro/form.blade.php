@@ -1,7 +1,6 @@
     <label for="title" class="block">
         <span class="text-gray-700">Título</span>
         <input
-            wire:model="title"
             type="text"
             name="title"
             id="title"
@@ -18,7 +17,6 @@
     >
         <span class="text-gray-700">Cuerpo</span>
         <textarea
-            wire:model="body"
             class="outline-none mt-3 p-1 mb-3 pl-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             name="body"
             id="body"
@@ -47,6 +45,31 @@
                 multiple
         />
 
+    </div>
+
+    <div class="border-2">
+        <label 
+            for="category_id"
+        > 
+            Categorías
+        </label>
+
+            <select 
+                class="border-2"
+                name="category_id" 
+                id="category_id"
+                required
+            >
+                @foreach ($categories as $category)
+                    <option 
+                        value="{{$category->id}}"
+                        {{ $category->id == $post->category_id ? 'selected' : ''}}
+                    >   
+                        {{$category->name}}
+                    </option>
+                @endforeach
+            </select>
+    
     </div>
 
     <div 

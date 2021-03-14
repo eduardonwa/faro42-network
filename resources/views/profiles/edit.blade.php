@@ -30,8 +30,20 @@
             <x-name-username :user="$user"> </x-name-username>
         </div>
 
+        <div class="mt-8 mb-6 flex items-center justify-center flex-col">
+            <label class="mb-4 w-full block uppercase font-bold text-xs text-gray-700">
+                Información
+            </label>
+            <textarea
+                class="w-full border border-gray-300 resize-none"
+                name="bio" 
+                id="bio" 
+                rows="5"
+            >{{ old('bio') ?? $user->bio }}</textarea>
+        </div>
+
         <div class="mt-8 mb-6 flex flex-col items-center relative">
-            <label  class="mb-4 text-start w-full block uppercase font-bold text-xs text-gray-700" 
+            <label class="mb-4 text-start w-full block uppercase font-bold text-xs text-gray-700" 
             > 
             Portada
             </label>

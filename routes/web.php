@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Faro;
+use App\Models\User;
 use App\Models\Tweet;
+use App\Models\Category;
 use App\Http\Livewire\FaroPostsTable;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaroController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TweetLikesController;
 
 /*
@@ -34,9 +37,10 @@ Route::get('/boletin/{id}', function () {
     ]);
 });
 
-Route::middleware(['auth', 'can:create_posts'])->group(function () {
+Route::middleware(['auth', 'can:review_posts'])->group(function () {
     Route::resource('/faro', FaroController::class)->except('show');
-    Route::get('/faro', FaroPostsTable::class); //livewire class
+    Route::get('/faro', FaroPostsTable::class); //livewire
+    Route::resource('categories', CategoriesController::class)->except('show');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -74,5 +78,13 @@ Route::get('/home', function () {
             ->timeline()
     ]);
 })->middleware(['auth'])->name('home');
+
+Route::get('/explore', function() {
+    return view('explore', [
+        'posts' => App\Models\Faro::all(),
+        'users' => User::paginate(50),
+        'categories' => App\Models\Category::all()
+    ]);
+});
 
 require __DIR__.'/auth.php';

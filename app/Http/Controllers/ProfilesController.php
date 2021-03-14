@@ -36,8 +36,9 @@ class ProfilesController extends Controller
                 'alpha_dash',
                 Rule::unique('users')->ignore($user),
             ],
-            'avatar' => ['file'],
-            'banner' => ['file'],
+            'bio' => ['max:255'],
+            'avatar' => ['image'],
+            'banner' => ['image'],
             'email' => [
                 'string', 
                 'required', 

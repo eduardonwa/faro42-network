@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faro;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -43,13 +42,14 @@ class FaroController extends Controller
          $post = request()->validate([
              'title' => ['required', 'max:255'],
              'body' => ['required'],
-             'image_url' => ['image']
+             'image_url' => ['image'],
+             'category_id' => ['required']
          ]);
- 
+
          if(request('image')) {
              $post['image_url'] = request('image')->store('faro_posts_img');
          }
- 
+         
          $postObject = new Faro($post);
          $postObject->save();
  

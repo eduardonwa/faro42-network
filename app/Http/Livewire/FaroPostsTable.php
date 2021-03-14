@@ -31,7 +31,6 @@ class FaroPostsTable extends Component
     public function render()
     {
         return view('livewire.faro-posts-table', [
-
             'posts' => Faro::search($this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->simplePaginate($this->perPage)

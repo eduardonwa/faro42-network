@@ -1,12 +1,10 @@
 <x-app>
+    <h1 class="flex justify-end font-light subpixel-antialiased tracking-wide text-2xl pb-4 italic">Boletín Express</h1>
+    @include('_entries')
 
-    @include('_entries', [
-        'posts' => App\Models\Faro::all()
-    ])
+    <h1 class="font-bold mb-10">Servidores</h1>
 
-    <h1 class="font-bold mb-10">Compañeros servidores</h1>
-
-    <div>
+    <div id="servidores">
         @foreach ($users as $user)
             <a href="{{ $user->path() }}" class="flex items-center mb-5">
                 <img    src="{{ $user->avatar }}" 

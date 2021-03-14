@@ -13,7 +13,7 @@
     </form>
 
     @include('faro.form', [
-        //
+        'categories' => App\Models\Category::get()
     ])
 </x-master>
 

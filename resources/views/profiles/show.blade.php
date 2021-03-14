@@ -1,7 +1,6 @@
 <x-app>
     <header class="mb-6 relative">
         <div class="relative">
-
             <img 
                 src="{{ $user->banner }}"
                 alt="Banner"
@@ -36,21 +35,35 @@
             </div>
         </div>
 
-        <p class="text-sm">
-            The name's Bugs. Bugs Bunny. Don't wear it out. Bugs is an anthropomorphic gray 
-            and white rabbit or hare who is famous for his flippant, insouciant personality.
-            He is also characterized by a Brooklyn accent, his portrayal as a trickster.
-            and his catch phrase "Eh ... What's up, doc?"
-        </p>
-    
+        <div x-data="{currentTab: 'first'}">
+            <div class="h-12 w-auto bg-blue-100 flex space-x-4 mb-3">
+                <button class="pl-5" x-on:click="currentTab = 'first'" :class="{ 'font-bold bg-opacity-5' : currentTab === 'first' }">Perfil</button>
+                <button class="" x-on:click="currentTab = 'second'" :class="{ 'font-bold bg-opacity-5' : currentTab === 'second' }">Seguidos</button>
+            </div>
+
+            <div x-show="currentTab === 'first'">
+                <div class="mb-6">
+                    <p class="text-sm">
+                        {{ $user->bio }}
+                    </p>
+                </div>
+
+                <div class="mt-8">
+                    @if(current_user()->is($user))
+                        @include('_publish-tweet-panel')
+                    @endif
+                
+                    @include('_timeline', [
+                        'tweets' => $tweets
+                    ])
+                </div>
+            </div>
+
+            <div x-show="currentTab === 'second'">
+                <div class="mt-3">
+                    @include('_friends-list')
+                </div>
+            </div>
+        </div>
     </header>
-
-    @if(current_user()->is($user))
-        @include('_publish-tweet-panel')
-    @endif
-
-    @include('_timeline', [
-        'tweets' => $tweets
-    ])
-
 </x-app>

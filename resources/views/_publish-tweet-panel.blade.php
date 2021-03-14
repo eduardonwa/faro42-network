@@ -4,7 +4,8 @@
 
         <textarea 
             name="body"
-            class="w-full rounded-md"
+            class="w-full rounded-md resize-none"
+            rows="3"
             placeholder="Hola, {{auth()->user()->name}}"
             required
             autofocus
@@ -30,6 +31,6 @@
     </form>
 
     @error('body')
-    <p class="text-red-500 text-sm mt-2"> {{ $message }} </p>
+        <p class="text-red-500 text-sm mt-2"> {{ $message }} </p>
     @enderror
 </div>

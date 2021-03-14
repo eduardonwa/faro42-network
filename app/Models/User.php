@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'bio',
         'avatar',
         'banner',
         'email',
@@ -102,9 +103,5 @@ class User extends Authenticatable
     {
         return $this->roles->map->abilities->flatten()->pluck('name')->unique();
     }
-
-    public function faro()
-    {
-        return $this->hasOne(Faro::class);
-    }
+    
 }
