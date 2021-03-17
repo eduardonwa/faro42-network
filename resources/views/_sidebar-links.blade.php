@@ -1,7 +1,7 @@
 <ul>
     <li>
         <a 
-            class="font-bold text-lg mb-4 block"
+            class="font-bold text-lg mb-4 block text-gray-100 md:text-black"
             href="/home"
         >
             Inicio
@@ -10,16 +10,16 @@
 
     <li>
         <a 
-            class="font-bold text-lg mb-4 block"
+            class="font-bold text-lg mb-4 block text-gray-100 md:text-black"
             href="/explore"
         >
-            Servicios
+            Boletín
         </a>
     </li>
 
     <li>
         <a 
-            class="font-bold text-lg mb-4 block"
+            class="font-bold text-lg mb-4 block text-gray-100 md:text-black"
             href="#"
         >
             Notifications
@@ -28,7 +28,7 @@
 
     <li>
         <a 
-            class="font-bold text-lg mb-4 block"
+            class="font-bold text-lg mb-4 block text-gray-100 md:text-black"
             href="#"
         >
             Messages
@@ -37,7 +37,7 @@
 
     <li>
         <a 
-            class="font-bold text-lg mb-4 block"
+            class="font-bold text-lg mb-4 block text-gray-100 md:text-black"
             href="{{ route('profile', auth()->user()) }}"
         >
             Perfil
@@ -47,7 +47,7 @@
     <li>
         <form method="POST" action="/logout">
             @csrf
-            <button class="font-bold text-lg mb-4 text-left">Cerrar sesión</button>
+            <button class="font-bold text-lg mb-4 text-left text-gray-100 md:text-black">Cerrar sesión</button>
         </form>
     </li>
 </ul>

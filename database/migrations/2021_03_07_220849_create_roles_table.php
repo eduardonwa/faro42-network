@@ -39,10 +39,10 @@ class CreateRolesTable extends Migration
                 ->on('roles')
                 ->onDelete('cascade');
 
-                $table->foreign('ability_id')
-                    ->references('id')
-                    ->on('abilities')
-                    ->onDelete('cascade');
+            $table->foreign('ability_id')
+                ->references('id')
+                ->on('abilities')
+                ->onDelete('cascade');
         });
 
         Schema::create('role_user', function (Blueprint $table) {

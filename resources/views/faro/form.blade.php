@@ -39,7 +39,7 @@
 
             <input
                 type="file"
-                name="image"
+                name="images[]"
                 id="image"
                 class="hidden"
                 multiple

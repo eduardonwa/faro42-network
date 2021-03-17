@@ -1,5 +1,4 @@
 <x-app>
-    <h1 class="flex justify-end font-light subpixel-antialiased tracking-wide text-2xl pb-4 italic">Boletín Express</h1>
     @include('_entries')
 
     <h1 class="font-bold mb-10">Servidores</h1>

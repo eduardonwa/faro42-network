@@ -31,11 +31,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/boletin/{id}', function () {
-    return view('faro.show', [
-        'posts' => App\Models\Faro::get()
-    ]);
-});
+Route::get('/boletin/{id}', [FaroController::class, 'show']);
 
 Route::middleware(['auth', 'can:review_posts'])->group(function () {
     Route::resource('/faro', FaroController::class)->except('show');
@@ -83,7 +79,6 @@ Route::get('/explore', function() {
     return view('explore', [
         'posts' => App\Models\Faro::all(),
         'users' => User::paginate(50),
-        'categories' => App\Models\Category::all()
     ]);
 });
 

@@ -33,10 +33,10 @@
                     &times;
                 </a>
                 <img
-                src="{{ $slot }}"
-                alt=""
-                class="p-4"
-            >
+                    src="faro_posts_img/{{$slot}}"
+                    alt=""
+                    class="p-4"
+                >
             </main>
 
             <aside class="m-2">

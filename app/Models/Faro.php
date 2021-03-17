@@ -3,22 +3,23 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faro extends Model
 {
-    protected $fillable = ['title', 'body', 'image_url', 'category_id'];
+    protected $fillable = [
+        'title', 
+        'body', 
+        'image_url', 
+        'category_id'
+    ];
 
     protected $table = 'faro_posts';
 
     use HasFactory;
-
-    public function getRouteKeyName()
-    {
-        return 'post';
-    }
 
     public static function search($search)
     {
@@ -36,4 +37,10 @@ class Faro extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'post_id');
+    }
+
 }

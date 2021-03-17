@@ -42,8 +42,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($posts as $post)
 
+                @foreach($posts as $post)
                     <tr>
                         <td class="border px-4 py-2">
                             <input 
@@ -123,7 +123,7 @@
 
                         <x-modal>
                             <x-faro-posts-img-modal hash="faro-posts-img-modal">
-                                {{ $post->image_url }}
+                                {{ asset($post->image_url) }}
                             </x-faro-posts-img-modal>
                         </x-modal>
 

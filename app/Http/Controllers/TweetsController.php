@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tweet;
 use App\Models\User;
+use App\Models\Tweet;
 
 class TweetsController extends Controller
 {
@@ -22,10 +22,18 @@ class TweetsController extends Controller
             'body' => 'required|max:255',
         ]);
 
-        Tweet::create([
+        $tweetObject = Tweet::create([
             'user_id' => auth()->id(),
             'body' => $attributes['body'],
         ]);
+
+        if(request()->hasFile('images')) {
+            foreach(request()->file('images') as $image) {
+                $tweetObject->images()->create(['name' => $image->store('tweet_img')]);
+            }
+        }
+
+        //dd($tweetObject);
 
         return redirect()->route('home');
     }
