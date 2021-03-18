@@ -11,9 +11,9 @@
         show = (location.hash === '#{{$hash}}');
     "
 >
-    <div class="fixed inset-0 bg-gray-900 opacity-80"></div>
+    <div class="fixed inset-0 bg-gray-900 opacity-80 p-20"></div>
 
-        <div class="bg-white my-5 rounded-md shadow-md flex items-center justify-center max-w-3xl m-auto fixed inset-0">
+        <div class="fixed inset-0 flex items-center justify-center w-72 h-96 m-auto md:h-auto md:w-auto md:max-w-3xl md:my-5 md:mx-5 md:mx-auto bg-white rounded-md shadow-md">
             <aside class="m-2">
                 <svg 
                     class="w-8 cursor-pointer"
@@ -29,14 +29,12 @@
             </aside>
 
             <main>
-                <a href="#" class="absolute right-16 top-10 h-8 w-8 text-xl text-center flex items-center justify-center border-2 cursor-pointer hover:bg-gray-200 transition ease-in-out">
+                <a href="#" class="absolute right-10 top-2 md:right-16 md:top-10 h-8 w-8 text-xl text-center flex items-center justify-center cursor-pointer hover:bg-gray-200 transition ease-in-out">
                     &times;
                 </a>
-                <img
-                    src="faro_posts_img/{{$slot}}"
-                    alt=""
-                    class="p-4"
-                >
+                <div class="border-2 border-blue-500 md:w-96 h-auto">
+                    {{$slot}}
+                </div>
             </main>
 
             <aside class="m-2">

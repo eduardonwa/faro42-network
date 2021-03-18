@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Faro;
+use App\Models\Image;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Faro;
 
 class FaroPostsTable extends Component
 {   
@@ -15,19 +16,16 @@ class FaroPostsTable extends Component
     public $sortField = 'id';
     public $sortAsc = true;
     public $selected = [];
+    public $path = 'faro_posts_img/';
 
     public Faro $post;
+    public Image $image;
 
     public function deletePost()
     {
         Faro::destroy($this->selected);
     }
-
-    public function imageUrl()
-    {
-        $this->post->image_url;
-    }
-
+    
     public function render()
     {
         return view('livewire.faro-posts-table', [

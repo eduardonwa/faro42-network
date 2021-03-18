@@ -41,8 +41,8 @@
                     <th class="px-4 py-2">Fecha</th>
                 </tr>
             </thead>
+            
             <tbody>
-
                 @foreach($posts as $post)
                     <tr>
                         <td class="border px-4 py-2">
@@ -59,14 +59,15 @@
 
                         <td class="border px-4 py-2">
                             <div class="flex items-start">
-                            @can('delete_posts') 
+                                
+                                @can('delete_posts') 
                                     <form method="POST" action="faro/{{$post->id}}">
                                         @csrf
                                         @method('DELETE')
                                             <button 
                                                 class="danger-btn" 
                                                 type="submit" 
-                                                onclick="return confirm('¿Estas seguro de borrar el recurso?')"> 
+                                                onclick="return confirm('¿Estas seguro de continuar?')"> 
                                                     <svg
                                                         class="w-4 cursor-pointer mr-4"
                                                         viewBox="0 0 20 20" 
@@ -74,8 +75,8 @@
                                                     >
                                                         <g id="Page-1" stroke="none" stroke-width="1" fill="black" fill-rule="evenodd">
                                                             <g id="icon-shape">
-                                                                <path d="M2,2 L18,2 L18,4 L2,4 L2,2 Z M8,0 L12,0 L14,2 L6,2 L8,0 Z M3,6 L17,6 L16,20 L4,20 L3,6 Z M8,8 L9,8 L9,18 L8,18 L8,8 Z M11,8 L12,8 L12,18 L11,18 L11,8 Z" id="Combined-Shape"></path>
-                                
+                                                                <path d="M2,2 L18,2 L18,4 L2,4 L2,2 Z M8,0 L12,0 L14,2 L6,2 L8,0 Z M3,6 L17,6 L16,20 L4,20 L3,6 Z M8,8 L9,8 L9,18 L8,18 L8,8 Z M11,8 L12,8 L12,18 L11,18 L11,8 Z" id="Combined-Shape"
+                                                                ></path>
                                                             </g>
                                                         </g>
                                                     </svg>
@@ -84,7 +85,7 @@
                                 @endcan
 
                                 @can('edit_posts')
-                                    <a href="faro/{{ $post->id }}/edit">
+                                    <a href="faro/{{$post->id}}/edit">
                                         <svg 
                                             class="w-4 cursor-pointer mr-4"
                                             viewBox="0 0 20 20"
@@ -98,11 +99,13 @@
                                         </svg>
                                     </a>
                                 @endcan
+
                                 <div class="flex items-center justify-center">
                                     <a href="#" class="hover:font-semibold hover:underline hover:text-green-500 cursor-pointer text-sm">
                                         {{ $post->title }}
                                     </a>
                                 </div>
+
                             </div>
                         </td>
 
@@ -114,18 +117,22 @@
                             class="border px-4 py-2 flex items-center justify-center"
                         >
                             <button
-                                onclick="$modals.show('faro-posts-img-modal')"
+                                onclick="$modals.show('faro-posts-img-modal-{{ $post->id }}')"
                                 class="bg-blue-100 border-2 border-blue-500 text-sm rounded-md p-1 text-blue-500 hover:bg-blue-500 hover:border-none hover:text-white transition ease-in-out"
                             >
                                 Mostrar
                             </button>
-                        </td>
 
-                        <x-modal>
-                            <x-faro-posts-img-modal hash="faro-posts-img-modal">
-                                {{ asset($post->image_url) }}
+                            <x-faro-posts-img-modal hash="faro-posts-img-modal-{{$post->id}}">
+                                @foreach($post->images as $image)
+                                    <img 
+                                        src="{{ $image->name }}"
+                                        alt="gallery"
+                                        class="h-full"
+                                    >
+                                @endforeach
                             </x-faro-posts-img-modal>
-                        </x-modal>
+                        </td>
 
                         <td class="border px-4 py-2 text-sm">
                             {{ $post->created_at->diffForHumans() }}
@@ -134,13 +141,13 @@
                 @endforeach
             </tbody>
         </table>
-
         {!! $posts->links() !!}
         @else
             @can('create_posts')
                 <p class="text-center flex items-center justify-center">Oops! No existen publicaciones, <a href="/faro/create" class="text-purple-500 hover:underline pl-1"> haz una publicación</a><span style='font-size:25px; padding-left: 5px;'>&#9749;</span></p>
             @endcan
         @endif
+
     </div>
 @endcan
 

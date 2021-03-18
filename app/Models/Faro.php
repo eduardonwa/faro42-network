@@ -12,8 +12,7 @@ class Faro extends Model
 {
     protected $fillable = [
         'title', 
-        'body', 
-        'image_url', 
+        'body',
         'category_id'
     ];
 

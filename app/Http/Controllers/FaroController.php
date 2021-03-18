@@ -46,13 +46,11 @@ class FaroController extends Controller
         ]);
 
         $postObject = Faro::create($post);
-
         if($request->hasFile('images')) {
             foreach($request->file('images') as $image) {
                 $postObject->images()->create(['name' => $image->store('faro_posts_img')]);
             }
         }
-
         return redirect('/faro');
      }
 
