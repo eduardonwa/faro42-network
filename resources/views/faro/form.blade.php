@@ -1,3 +1,11 @@
+    <script src="https://cdn.tiny.cloud/1/aws4tj8xvv0v21y5rqa92ji4fbcmc2kfg9ti1iqnvkz7kgxd/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        
+    <script>
+        tinymce.init({
+        selector: '#body'
+        });
+    </script>
+
     <label for="title" class="block">
         <span class="text-gray-700">Título</span>
         <input
@@ -13,14 +21,14 @@
 
     <label 
         for="body" 
-        class="block"    
+        class="block focus-visible:ring-2 focus-visible:ring-rose-500"    
     >
         <span class="text-gray-700">Cuerpo</span>
         <textarea
             class="outline-none mt-3 p-1 mb-3 pl-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             name="body"
             id="body"
-            rows="10"
+            rows="20"
             required
         >{{ old('body') ?? $post->body }}</textarea>
     </label>
@@ -29,7 +37,7 @@
         
         <label 
             for="image" 
-            class="block"
+            class="block focus-visible:ring-2 focus-visible:ring-rose-500"
         >
             <span 
                 class="bg-green-600 hover:bg-green-500 h-10 w-full flex items-center justify-center rounded-md text-white text-sm p-2 cursor-pointer w-full border-2"
@@ -47,7 +55,7 @@
 
     </div>
 
-    <div class="border-2">
+    <div>
         <label 
             for="category_id"
         > 

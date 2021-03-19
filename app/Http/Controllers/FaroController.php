@@ -51,6 +51,7 @@ class FaroController extends Controller
                 $postObject->images()->create(['name' => $image->store('faro_posts_img')]);
             }
         }
+
         return redirect('/faro');
      }
 

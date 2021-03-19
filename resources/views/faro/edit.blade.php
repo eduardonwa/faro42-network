@@ -1,5 +1,5 @@
 <x-master>
-    
+
     <h2 class="text-2xl font-bold text-center">Editar entrada</h2>
 
     <form

@@ -11,7 +11,7 @@
                     />
                 @endforeach
                 <h1 class="font-bold text-lg mb-4">{{ $post->title }}</h1>
-                <p class="mb-4">{{ $post->body }}</p>
+                <p class="mb-4">{!! $post->body !!}</p>
             </div>
     </div>
 </x-app>

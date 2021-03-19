@@ -11,7 +11,7 @@
                     </a>
                 </h5>
                     <p class="mb-3">
-                        {{ $post->body }}
+                        {!! $post->body !!}
                     </p>
             </div>
 

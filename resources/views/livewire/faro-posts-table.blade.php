@@ -124,14 +124,25 @@
                             </button>
 
                             <x-faro-posts-img-modal hash="faro-posts-img-modal-{{$post->id}}">
-                                @foreach($post->images as $image)
-                                    <img 
-                                        src="{{ $image->name }}"
-                                        alt="gallery"
-                                        class="h-full"
-                                    >
-                                @endforeach
+                                <div class="slider-items flex items-center justify-between overflow-hidden md:w-96 h-auto absolute mx-auto">
+                                    @foreach($post->images as $image)                        
+                                        <div class="{{ $loop->first ? 'active' : 'hidden' }}">
+                                            <img 
+                                                src="{{ $image->name }}"
+                                                alt="gallery"
+                                                class="h-full hidden"
+                                            >
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <div class="w-full absolute flex items-center justify-between">
+                                    <x-left-chevron />
+
+                                    <x-right-chevron />
+                                </div>
                             </x-faro-posts-img-modal>
+
                         </td>
 
                         <td class="border px-4 py-2 text-sm">
@@ -150,6 +161,8 @@
 
     </div>
 @endcan
+
+<script src="{{ asset('js/gallery.js') }}" defer></script>
 
 <script>
     window.$modals = {
