@@ -1,5 +1,4 @@
 <x-master>
-
     <h2 class="text-2xl font-bold text-center">Nueva entrada</h2>
 
     <form
@@ -15,6 +14,7 @@
     @include('faro.form', [
         'categories' => App\Models\Category::get()
     ])
+
 </x-master>
 
 

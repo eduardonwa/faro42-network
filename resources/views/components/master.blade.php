@@ -12,6 +12,24 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="http://unpkg.com/turbolinks"></script>
         @livewireStyles
+        <style>
+            @keyframes abs-from-left {
+                0% { left:-100%; }
+                100% { left:0; }
+            }
+            @keyframes abs-from-right {
+                0% { left:100%; }
+                100% { left:0; }
+            }
+            @keyframes abs-to-left {
+                0% { left:0; }
+                100% { left:-100%; }
+            }
+            @keyframes abs-to-right {
+                0% { left:0; }
+                100% { left:100%; }
+            }
+        </style>
     </head>
     <body>
 

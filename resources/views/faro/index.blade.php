@@ -1,3 +1,3 @@
 <x-app>
-    @livewire('faro-posts-table', ['post' => $post])
+    @livewire('faro-posts-table')
 </x-app>

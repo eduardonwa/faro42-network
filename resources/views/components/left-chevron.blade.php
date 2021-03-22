@@ -1,4 +1,4 @@
-<div class="left-slide">
+<div class="left-slide" onclick="previousSlide()">
     <svg 
         class="w-8 ml-4 cursor-pointer"
         viewBox="0 0 20 20" 

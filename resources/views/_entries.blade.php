@@ -5,14 +5,20 @@
 
             <div class="p-4">
                 <h5 class="font-bold mb-4">
-                    <a class="flex font-semibold text-blue-500 text-lg transition ease-in-out hover:underline hover:text-black" 
+                    <a class="flex text-lg text-blue-500" 
                     href="/boletin/{{ $post->id }}">
                         {{ $post->title }}
                     </a>
                 </h5>
                     <p class="mb-3">
-                        {!! $post->body !!}
+                        {{ substr(strip_tags($post->body), 0, 400) }} {{ strlen(strip_tags($post->body)) > 75 ? "..." : "" }}
                     </p>
+
+                    <a href="/boletin/{{ $post->id }}" 
+                        class="bg-gray-800 uppercase text-sm tracking-tight text-white transition ease-in-out hover:bg-gray-500 p-2 rounded-md shadow-md"
+                    >
+                        Leer más
+                    </a>
             </div>
 
         </div>
