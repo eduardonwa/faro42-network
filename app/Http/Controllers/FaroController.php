@@ -46,6 +46,7 @@ class FaroController extends Controller
         ]);
 
         $postObject = Faro::create($post);
+
         if($request->hasFile('images')) {
             foreach($request->file('images') as $image) {
                 $postObject->images()->create(['name' => $image->store('faro_posts_img')]);
@@ -94,10 +95,12 @@ class FaroController extends Controller
 
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->category_id = $request->category_id;
 
         $this->validate($request, [
             'title' => ['required', 'max:255'],
             'body' => ['required'],
+            'category_id' => ['required'],
             'image_url' => ['image']
         ]);
 

@@ -10,7 +10,7 @@
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="http://unpkg.com/turbolinks"></script>
+        {{-- <script src="http://unpkg.com/turbolinks"></script> --}}
         @livewireStyles
         <style>
             @keyframes abs-from-left {

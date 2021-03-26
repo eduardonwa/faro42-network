@@ -1,5 +1,5 @@
 @can('review_posts')
-    <div class="px-4">
+    <div class="px-4" id="refresh">
         <div class="w-full flex flex-col items-center justify-center md:flex-row pb-10 space-y-4 md:space-y-0">
             <div class="w-3/6 mx-1 w-full">
                 <input wire:model.debounce.300ms="search" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"placeholder="Buscar publicaciones...">
@@ -127,35 +127,140 @@
                         </td>
 
                         <td class="border px-4 py-2 text-sm">
-                            {{ $post->category->name }}
-                            
-                            <div>
-                                <x-faro-posts-img-modal hash="category-crud-modal">
+                            @can('edit_posts')
+                                @if ($post->category === null)
+                                    <p>No hay categorías asignadas, 
+                                        <a 
+                                            href="faro/{{$post->id}}/edit"
+                                            class="text-purple-500 hover:underline pl-1"
+                                        >
+                                            puedes asignar una
+                                            <span class="font-size:25px; padding-left: 5px;">
+                                                &#x1F913; aquí
+                                            </span>
+                                        </a> 
+                                    </p>
+                                @else
+                                    {{ $post->category->name }}
+                                @endif
+                            @endcan
+                                <x-faro-modal hash="category-crud-modal" type="categories">
                                     <x-category-tabs>
 
-                                    <x-slot name="list">
-                                        <h1 class="p-4 mx-auto font-bold">Lista de categorías</h1>
+                                        <x-slot name="tabLinks">
+                                            <button 
+                                                class="border rounded-bl-none border-b-0 rounded-br-none border-blue-500 p-2 w-24 md:w-32 rounded-xl hover:bg-gray-200 transition ease-in-out"
+                                                :class="{'bg-gray-200' : currentTab === 'index'}"
+                                                x-on:click="currentTab = 'index'"
+                                            >
+                                                Categorías
+                                            </button>
+
+                                            <button 
+                                                class="border rounded-bl-none border-b-0 rounded-br-none border-blue-500 p-2 w-24 md:w-32 rounded-xl hover:bg-gray-200 transition ease-in-out"
+                                                :class="{'bg-gray-200' : currentTab === 'create'}"
+                                                x-on:click="currentTab = 'create'"
+                                            >
+                                                Crear
+                                            </button>
+                                        </x-slot>
+                                        
+                                        <x-slot name="index">
                                             @foreach ($categories as $category)
-                                                <div class="mt-8 flex flex-col items-center justify-center md:flex-row md:space-x-2 p-4 hover:bg-gray-200 transition ease-in-out">
-                                                    
+                                                <div class="mt-6 flex flex-col items-center justify-center md:flex-row md:space-x-2 p-4 hover:bg-gray-200 active:bg-green-700 transition ease-in-out">
                                                     <input 
                                                         class="text-sm w-56"
                                                         type="text"
-                                                        value="{{ $category->name}}"
-                                                    > 
+                                                        value="{{ $category->name }}"
+                                                    >
                                                     
-                                                    <div class="mt-4 md:mt-0">
+                                                    <div class="mt-2 md:mt-0">
                                                         <button class="md:bg-gray-500 bg-blue-500 text-white text-sm p-2 rounded-md hover:bg-blue-500 transition ease-in-out">Actualizar</button>
-                                                        <button class="md:bg-gray-500 bg-red-500 text-white text-sm p-2 rounded-md hover:bg-red-500 transition ease-in-out">Borrar</button>
+                                                        <button 
+                                                            wire:click="deleteCategory({{ $category->id }})"
+                                                            class="md:bg-gray-500 bg-red-500 text-white text-sm p-2 rounded-md hover:bg-red-500 transition ease-in-out"
+                                                        >
+                                                            Borrar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             @endforeach
-                                    </x-slot>
+                                        </x-slot>
+
+                                        <x-slot name="create">
+                                            <div>
+                                                @if ( $categorySuccess)
+                                                    <div class="text-sm p-4 bg-green-200 rounded-md w-full h-8 mt-4 flex items-center justify-between">
+                                                        {{ $categorySuccess }}
+                                                        <button 
+                                                            type="button" 
+                                                            wire:click="$set('categorySuccess', null)" 
+                                                            class="cursor-pointer text-xl relative right-0 hover:text-white transition ease-in-out"
+                                                        >
+                                                            &times;
+                                                        </button>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            
+                                                <form
+                                                    class="mt-6 flex flex-col p-4 space-y-4"
+                                                    wire:submit.prevent="submitCategory"
+                                                    action="#"
+                                                    method="POST"
+                                                >
+                                                <label 
+                                                    class="font-semibold"
+                                                    for="name">
+                                                    Nombre de categoría
+                                                </label>
+
+                                                <input 
+                                                    wire:model="name"
+                                                    class="@error('name') border border-red-500 @enderror w-full"
+                                                    type="text"
+                                                    name="name"
+                                                    id="name"
+                                                    value="{{ old('name') }}"
+                                                    required
+                                                >
+                                                <div>
+                                                    @error('name')
+                                                        <p>{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <label 
+                                                    class="font-semibold"
+                                                    for="description">
+                                                    Breve descripción
+                                                </label>
+                                                <textarea 
+                                                    wire:model="description"
+                                                    name="description" 
+                                                    id="description" 
+                                                    class="@error('description') border border-red-500 @enderror resize-none"
+                                                    rows="2"
+                                                    value="{{ old('description') }}"
+                                                > </textarea>
+
+                                                <div>
+                                                    @error('description')
+                                                        <p>{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <button 
+                                                    class="bg-green-500 rounded-md p-2 hover:bg-green-700 hover:text-white transition ease-in-out"
+                                                    type="submit"
+                                                >
+                                                    Guardar
+                                                </button>
+                                            </form>
+                                        </x-slot>
 
                                     </x-category-tabs>
-                                </x-faro-posts-img-modal>
-                            </div>
-
+                                </x-faro-modal>
                         </td>
 
                         <td 
@@ -168,22 +273,31 @@
                                 Mostrar
                             </button>
 
-                            <x-faro-posts-img-modal hash="faro-posts-img-modal-{{$post->id}}">
+                            <x-faro-modal hash="faro-posts-img-modal-{{$post->id}}" type="images">
                                 <div class="relative block h-full w-full overflow-hidden">
-                                    <div class="abs-slider" data-manual="true">
-                                    @foreach($post->images as $image)
-                                        <div class="abs-slider-container overflow-x-auto flex flex-col items-center justify-center absolute inset-y-0 overflow-hidden h-auto w-full left-full">
-                                            <img 
-                                                src="{{ $image->name }}" 
-                                                alt="gallery" 
-                                                class="h-full md:p-20 p-0 w-auto h-full mx-auto overflow-hidden">
-                                        </div>
-                                    @endforeach
-                                        <div class="abs-slider-prev absolute block w-11 h-11 text-center leading-8 text-2xl cursor-pointer rounded-full opacity-70 hover:opacity-100 -translate-y-1/2 top-80 left-4"><x-left-chevron/></div>
-                                        <div class="abs-slider-next absolute block w-11 h-11 text-center leading-8 text-2xl cursor-pointer rounded-full opacity-70 hover:opacity-100 -translate-y-1/2 top-80 right-4"><x-right-chevron/></div>
+                                    <div    
+                                        class="abs-slider" 
+                                        data-manual="true"
+                                    >
+                                            @foreach($post->images as $image)
+                                                <div class="abs-slider-container overflow-x-auto flex flex-col items-center justify-center absolute inset-y-0 overflow-hidden h-auto w-full left-full">
+                                                    <img 
+                                                        src="{{ $image->name }}" 
+                                                        alt="gallery" 
+                                                        class="h-full md:p-20 p-0 w-auto h-full mx-auto overflow-hidden">
+                                                </div>
+                                            @endforeach
+                                            
+                                            <div class="abs-slider-prev z-11 absolute block w-11 h-11 text-center leading-8 text-2xl cursor-pointer rounded-full opacity-70 hover:opacity-100 -translate-y-1/2 top-24 -left-3 md:top-80 md:left-4">
+                                                <x-left-chevron/>
+                                            </div>
+
+                                            <div class="abs-slider-next z-11 absolute block w-11 h-11 text-center leading-8 text-2xl cursor-pointer rounded-full opacity-70 hover:opacity-100 -translate-y-1/2 top-24 -right-3 md:top-80 md:right-4">
+                                                <x-right-chevron/>
+                                            </div>
                                     </div>
                                 </div>
-                            </x-faro-posts-img-modal>
+                            </x-faro-modal>
                         </td>
 
                         <td class="border px-4 py-2 text-sm">
@@ -196,7 +310,18 @@
         {!! $posts->links() !!}
         @else
             @can('create_posts')
-                <p class="text-center flex items-center justify-center">Oops! No existen publicaciones, <a href="/faro/create" class="text-purple-500 hover:underline pl-1"> haz una publicación</a><span style='font-size:25px; padding-left: 5px;'>&#9749;</span></p>
+                <p 
+                    class="text-center flex items-center justify-center"
+                >   Oops! No existen publicaciones, 
+                    <a 
+                        href="/faro/create" 
+                        class="text-purple-500 hover:underline pl-1"
+                    >   haz una publicación
+                    </a>
+                    <span style='font-size:25px; padding-left: 5px;'>
+                        &#9749;
+                    </span>
+                </p>
             @endcan
         @endif
 

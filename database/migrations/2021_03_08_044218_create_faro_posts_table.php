@@ -18,7 +18,7 @@ class CreateFaroPostsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->boolean('is_approved')->default(false);
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
         });
     }

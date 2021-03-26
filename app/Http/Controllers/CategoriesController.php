@@ -15,13 +15,14 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        return view('faro.form');
+        return view('faro.create');
     }
 
     public function store(Request $request)
     {
         $category = request()->validate([
-            'name' => ['required', 'max:255'],
+            'name' => ['required'],
+            'description'=> ['required', 'min:5']
         ]);
         
         $categoryObject = new Category($category);

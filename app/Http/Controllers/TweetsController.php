@@ -33,8 +33,6 @@ class TweetsController extends Controller
             }
         }
 
-        //dd($tweetObject);
-
         return redirect()->route('home');
     }
 }

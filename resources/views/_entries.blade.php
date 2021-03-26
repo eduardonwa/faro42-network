@@ -11,7 +11,7 @@
                     </a>
                 </h5>
                     <p class="mb-3">
-                        {{ substr(strip_tags($post->body), 0, 400) }} {{ strlen(strip_tags($post->body)) > 75 ? "..." : "" }}
+                        {!! substr(strip_tags($post->body), 0, 400) !!} {!! strlen(strip_tags($post->body)) > 75 ? "..." : "" !!}
                     </p>
 
                     <a href="/boletin/{{ $post->id }}" 

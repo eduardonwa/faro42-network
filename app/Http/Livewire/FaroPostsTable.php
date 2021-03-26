@@ -25,6 +25,46 @@ class FaroPostsTable extends Component
         Faro::destroy($this->selected);
     }
 
+    // Categories
+    public Category $category;
+
+    public $name;
+    public $description;
+    public $categorySuccess;
+
+    protected $rules = [
+        'name' => 'required',
+        'description' => 'required|min:5'
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function submitCategory() {
+
+        $category = $this->validate();
+
+        $category['name'] = $this->name;
+        $category['description'] = $this->description;
+        Category::create($category);
+
+        $this->categorySuccess = 'Tu categoría fue creada.';
+        $this->resetForm();
+    }
+
+    private function resetform()
+    {
+        $this->name = '';
+        $this->description = '';
+    }
+
+    public function deleteCategory(Category $category)
+    {
+        $category->delete();
+    }
+    
     public function render()
     {
         return view('livewire.faro-posts-table', [

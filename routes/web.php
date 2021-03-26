@@ -64,8 +64,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/explore', [ExploreController::class, 'index']);
 });
 
-Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name(
-    'profile');
+Route::get('/profiles/{user:username}', 
+    [ProfilesController::class, 'show'])
+->name('profile');
 
 Route::get('/home', function () {
     return view('tweets.index', [
