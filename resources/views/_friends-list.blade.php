@@ -16,6 +16,16 @@
         </div>
     </li>
     @empty
-        <li>No estás siguendo a nadie, <a class="underline text-purple-600" href="/explore#servidores">busca a quien seguir</a><span style='font-size:25px; padding-left: 5px;'>&#128587;</span></li>
+        <li>No estás siguendo a nadie, 
+            <a class="underline text-purple-600" href="/explore#servidores"
+            >
+                encuentra a más personas
+            </a>
+            <br/>
+            <span style='font-size:25px; padding-left: 5px;'
+            >
+                &#128587;🙋‍♂️
+            </span>
+        </li>
     @endforelse
 </ul>

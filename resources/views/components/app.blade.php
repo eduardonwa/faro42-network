@@ -33,7 +33,8 @@
                                 </div>
 
                                 <!-- Menu, if mobile set to hidden -->
-                                <div :class="isOpen ? 'show' : 'hidden' " class="md:flex items-center md:block mt-4 md:mt-0">
+                                <div :class="isOpen ? 'show' : 'hidden'" 
+                                    class="md:flex items-center md:block mt-4 md:mt-0">
                                     <div class="flex flex-col md:flex-row z-10">
                                         @include('_sidebar-links')
                                     </div>
@@ -49,7 +50,7 @@
     
                 @if ( auth()->check() )
                     <div class="mb-6 md:mb-6 lg:mb-0 lg:w-1/6 h-full bg-blue-100 rounded-lg p-4 bg-gray-200 rounded-lg py-4 px-6 border border-gray-300">
-                        @includeIf('_friends-list')
+                        @include('_friends-list')
                     </div>
                 @endif
                 

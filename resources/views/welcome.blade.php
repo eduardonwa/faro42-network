@@ -103,21 +103,24 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home Feed</a>
                     @else
-                    <div class="w-full lg:grid lg:grid-cols-2">
-                        <div class="hidden lg:block lg:flex lg:items-center lg:justify-center">
-                            <img 
-                                    src="img/faro42-desktop-bg2.svg" 
-                                    class="h-96"
-                                    alt="">
+                        <div class="w-full lg:grid lg:grid-cols-2">
+                            <div class="hidden lg:block lg:flex lg:items-center lg:justify-center">
+                                <img 
+                                        src="img/faro42-desktop-bg2.svg" 
+                                        class="h-96"
+                                        alt=""
+                                >
+                            </div>
+                            <div class="flex items-center flex-col pb-8">
+                                <p class="font-semibold text-center text-lg md:text-2xl m-8 mb-8">
+                                    Lo que está pasando en el área Sonora Sur de Alcohólicos Anónimos
+                                </p>
+                                    <a href="{{ route('login') }}" 
+                                        class="transition duration-150 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110 rounded-lg flex items-center justify-center text-lg font-bold text-gray-100 mb-8 h-14 w-52">Ingresar</a>
+                                    <a href="{{ route('register') }}" 
+                                        class="transition duration-150 ease-in-out border-2 border-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110 hover:text-white rounded-lg flex items-center justify-center text-lg font-bold text-black h-14 w-52">Crea una cuenta</a>
+                            </div>
                         </div>
-                        <div class="flex items-center flex-col pb-8">
-                        <p class="font-semibold text-center text-lg md:text-2xl m-8 mb-8">
-                            Lo que está pasando en el área Sonora Sur de Alcohólicos Anónimos
-                        </p>
-                            <a href="{{ route('login') }}" class="transition duration-150 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110 rounded-lg flex items-center justify-center text-lg font-bold text-gray-100 mb-8 h-14 w-52">Ingresar</a>
-                            <a href="{{ route('register') }}" class="transition duration-150 ease-in-out border-2 border-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110 hover:text-white rounded-lg flex items-center justify-center text-lg font-bold text-black h-14 w-52">Crea una cuenta</a>
-                        </div>
-                    </div>
                     @endauth
             </div>
             

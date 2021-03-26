@@ -1,5 +1,6 @@
 <x-app>
     <form method="POST" action="{{ $user->path() }}" enctype="multipart/form-data">
+        
         @csrf
         @method('PATCH')
 
@@ -45,14 +46,16 @@
         <div class="mt-8 mb-6 flex flex-col items-center relative">
             <label class="mb-4 text-start w-full block uppercase font-bold text-xs text-gray-700" 
             > 
-            Portada
+                Portada
             </label>
+            
             <img    
                 src="{{ $user->banner }}"
                 alt="Tu portada actual"
                 id="dvPreview2"
                 class="w-full h-44 mb-2 border border-gray-300 rounded-sm"
             >
+
             <div class="relative w-full h-10 flex items-center justify-center md:items-end md:justify-end">
                 <label 
                     class="absolute w-46 p-2 bg-blue-600 hover:bg-blue-500 text-sm rounded-md text-white cursor-pointer"
@@ -70,7 +73,8 @@
          </div>
 
         
-        <div class="mb-6">
+        
+         <div class="mb-6">
             <label  class="block mb-2 uppercase font-bold text-xs text-gray-700" 
                     for="email"
             >
@@ -139,18 +143,18 @@
 </x-app>
 
 <script>
-function previewFile() {
-  const preview = document.getElementById('avatarPreview');
-  const file = document.querySelector('input[type=file]').files[0];
-  const reader = new FileReader();
+    function previewFile() {
+    const preview = document.getElementById('avatarPreview');
+    const file = document.querySelector('input[type=file]').files[0];
+    const reader = new FileReader();
 
-  reader.addEventListener("load", function () {
-    // convert image file to base64 string
-    preview.src = reader.result;
-  }, false);
+    reader.addEventListener("load", function () {
+        // convert image file to base64 string
+        preview.src = reader.result;
+    }, false);
 
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-}
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+    }
 </script>

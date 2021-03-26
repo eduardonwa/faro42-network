@@ -26,11 +26,10 @@
         @if ($tweet->images != null)        
             <div class="grid grid-cols-2 grid-rows-1">
                 @foreach($tweet->images as $images)
-                {{-- @dd($tweet->images->toArray())  --}}
                     <div class="md:p-1">
                         <img
                             class="h-full w-full object-cover"
-                            src="{{ $images->name }}" 
+                            src="{{ asset($images->name) }}" 
                             alt="tweet images"
                         >
                     </div>

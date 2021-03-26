@@ -37,6 +37,7 @@
 
             <section class="px-8 py-3 mb-4 mx-auto">
                 <header class="flex flex-col items-center mt-8 md:mt-0 md:flex-row">
+                    
                     <a href=" {{route ('home') }} ">
                         <img
                             src="/img/faro42.svg" 

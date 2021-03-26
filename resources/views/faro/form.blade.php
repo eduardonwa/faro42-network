@@ -2,7 +2,7 @@
     
     <script>
         tinymce.init({
-        selector: '#body'
+        selector: 'textarea#body'
         });
     </script>
 
