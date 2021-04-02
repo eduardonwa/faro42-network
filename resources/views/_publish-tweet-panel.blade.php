@@ -11,6 +11,8 @@
             autofocus
         ></textarea>
 
+        <div id="imgs" class="flex flex-row"></div>
+
         <div class="flex items-center justify-end">
             <label 
                 for="images">
@@ -58,3 +60,25 @@
         <p class="text-red-500 text-sm mt-2"> {{ $message }} </p>
     @enderror
 </div>
+
+<script>
+    $("#images").on('change',function() {
+       var fileList = this.files; 
+           for(var i = 0; i < fileList.length; i++)
+       {
+           var t = window.URL || window.webkitURL;
+           var objectUrl = t.createObjectURL(fileList[i]);
+           $('#imgs').append(`
+               <div> 
+                   <img class="h-48 border-2" src="` + objectUrl + `" /> 
+               </div>`
+           );
+
+           j = i+1;
+           if(j % 3 == 0)
+           {
+               $('#imgs').append('<br>');
+           }
+       }
+   });
+</script>

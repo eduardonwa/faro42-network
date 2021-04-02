@@ -4,8 +4,8 @@
             <img 
                 src="{{ $user->banner }}"
                 alt="Banner"
-                id="previewBanner"
-                class="mt-4 mb-8 rounded-md"
+                id="banner"
+                class="mt-4 mb-8 rounded-md h-48 w-full mx-auto bg-auto"
             >
 
             <img 
@@ -52,10 +52,12 @@
                     @if(current_user()->is($user))
                         @include('_publish-tweet-panel')
                     @endif
+
                     @include('_timeline', [
                         'tweets' => $tweets
                     ])
                 </div>
+                
             </div>
 
             <div x-show="currentTab === 'second'">

@@ -137,6 +137,7 @@
                                             puedes asignar una
                                             <span class="font-size:25px; padding-left: 5px;">
                                                 &#x1F913; aquí
+                                                
                                             </span>
                                         </a> 
                                     </p>
@@ -144,6 +145,7 @@
                                     {{ $post->category->name }}
                                 @endif
                             @endcan
+
                                 <x-faro-modal hash="category-crud-modal" type="categories">
                                     <x-category-tabs>
 
@@ -166,16 +168,51 @@
                                         </x-slot>
                                         
                                         <x-slot name="index">
+                                            @if ($categoryUpdated)
+                                                <div class="text-sm p-4 bg-blue-200 rounded-md w-full h-8 mt-4 flex items-center justify-between">
+                                                    {{ $categoryUpdated }}
+                                                    <button 
+                                                        type="button" 
+                                                        wire:click="$set('categoryUpdated', null)" 
+                                                        class="cursor-pointer text-xl relative right-0 hover:text-white transition ease-in-out"
+                                                    >
+                                                        &times;
+                                                    </button>
+                                                </div>
+                                            @endif
+
+                                            @if ($categoryDeleted)
+                                                <div class="text-sm p-4 bg-yellow-200 rounded-md w-full h-8 mt-4 flex items-center justify-between">
+                                                    {{ $categoryDeleted}}
+                                                    <button 
+                                                        type="button" 
+                                                        wire:click="$set('categoryDeleted', null)" 
+                                                        class="cursor-pointer text-xl relative right-0 hover:text-white transition ease-in-out"
+                                                    >
+                                                        &times;
+                                                    </button>
+                                                </div>
+                                            @endif
+
                                             @foreach ($categories as $category)
                                                 <div class="mt-6 flex flex-col items-center justify-center md:flex-row md:space-x-2 p-4 hover:bg-gray-200 active:bg-green-700 transition ease-in-out">
-                                                    <input 
+                                                    <input
                                                         class="text-sm w-56"
                                                         type="text"
+                                                        name="name"
+                                                        id="name"
                                                         value="{{ $category->name }}"
                                                     >
-                                                    
+
                                                     <div class="mt-2 md:mt-0">
-                                                        <button class="md:bg-gray-500 bg-blue-500 text-white text-sm p-2 rounded-md hover:bg-blue-500 transition ease-in-out">Actualizar</button>
+                                                        <button
+                                                            wire:click="update({{ $category->id }})"
+                                                            type="submit"
+                                                            class="md:bg-gray-500 bg-blue-500 text-white text-sm p-2 rounded-md hover:bg-blue-500 transition ease-in-out"
+                                                        >   
+                                                            Actualizar
+                                                        </button>
+
                                                         <button 
                                                             wire:click="deleteCategory({{ $category->id }})"
                                                             class="md:bg-gray-500 bg-red-500 text-white text-sm p-2 rounded-md hover:bg-red-500 transition ease-in-out"
@@ -284,7 +321,7 @@
                                                     <img 
                                                         src="{{ $image->name }}" 
                                                         alt="gallery" 
-                                                        class="h-full md:p-20 p-0 w-auto h-full mx-auto overflow-hidden">
+                                                        class="md:p-20 p-0 w-auto h-full mx-auto overflow-hidden">
                                                 </div>
                                             @endforeach
                                             

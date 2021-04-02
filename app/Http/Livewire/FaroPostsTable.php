@@ -31,10 +31,12 @@ class FaroPostsTable extends Component
     public $name;
     public $description;
     public $categorySuccess;
+    public $categoryUpdated;
+    public $categoryDeleted;
 
     protected $rules = [
         'name' => 'required',
-        'description' => 'required|min:5'
+        'description' => 'min:5'
     ];
 
     public function updated($propertyName)
@@ -42,12 +44,17 @@ class FaroPostsTable extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function mount(Category $category)
+    {
+        $this->category = $category;
+        $this->name = $category->name;
+        $this->description = $category->description;
+    }
+
     public function submitCategory() {
 
         $category = $this->validate();
 
-        $category['name'] = $this->name;
-        $category['description'] = $this->description;
         Category::create($category);
 
         $this->categorySuccess = 'Tu categoría fue creada.';
@@ -60,9 +67,22 @@ class FaroPostsTable extends Component
         $this->description = '';
     }
 
+    public function update(Category $category)
+    {
+        $this->validate();
+
+        $this->category->update([
+            'name' => $this->name
+        ]);
+
+        $this->$categoryUpdated = 'Tu categoría fue actualizada.';
+    }
+
     public function deleteCategory(Category $category)
     {
         $category->delete();
+
+        $this->categoryDeleted = 'Tu categoría fue eliminada.';
     }
     
     public function render()

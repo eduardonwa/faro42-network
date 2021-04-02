@@ -4,7 +4,7 @@
     <form
         method="POST"
         action="/faro"
-        class="mt-8 max-w-2xl border-2 mx-auto mb-8"
+        class="mt-8 max-w-2xl mx-auto mb-8"
         enctype="multipart/form-data"
     >   @csrf
     
